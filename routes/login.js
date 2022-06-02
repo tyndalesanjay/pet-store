@@ -52,7 +52,7 @@ router.post('/userlogin', function(req, res, next) {
        
   var email = req.body.email;
   var password = req.body.password;
-  conn.query('SELECT * FROM pet_store.customer WHERE email = ? AND BINARY password = ?', [email, password], function(err, results, fields) {
+  conn.query('SELECT * FROM pet_store.customer WHERE email = ? AND BINARY password = ?', [email, password], function(err, results) {
       // if login is incorrect or not found
       console.log(results.length);
       if (results.length <= 0) {

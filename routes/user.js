@@ -5,7 +5,7 @@ var conn = require('../lib/db');
 // Get Products
 router.get('/view_item', (req, res) => {
     let sql = 'SELECT * FROM pet_store.product'
-    if (req.session.loggedin == true) {
+    // if (req.session.loggedin == true) {
         conn.query(sql, (err, results) => {
             if (err) {
                 res.render('user/view_items',
@@ -22,12 +22,12 @@ router.get('/view_item', (req, res) => {
                 })
             }
         });
-    }else {
-        res.redirect('/login/user_login')
-    }
+    // }else {
+    //     res.redirect('/login/user_login')
+    // }
 });
 
-// Get Add product
+// Get Add user
 router.get('/user_sign_up', (req, res) => {
         res.render('user/add_user', 
         {
@@ -36,7 +36,7 @@ router.get('/user_sign_up', (req, res) => {
         })
 });
 
-// Add product
+// Add user
 router.post('/add_customer', (req, res) => {
     let sql = "INSERT INTO pet_store.customer SET ?";
     let data = {

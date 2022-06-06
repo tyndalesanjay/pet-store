@@ -25,7 +25,22 @@
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="user/view_item">Products</a>
+              <a class="nav-link" href="/">items</a>
+            </li>
+            <li class="nav-item dropdown">
+              <% if (my_session.loggedin === true) { %>
+                <a class="nav-link" href="/login/userlogout">
+                  Logout
+                </a>
+              <% } else { %>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Login/Sign Up
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="/login/user_login">Login</a></li>
+                  <li><a class="dropdown-item" href="/user/user_sign_up">Sign Up</a></li>
+                </ul>
+              <% }%>
             </li>
           </ul>
           <form class="d-flex">
@@ -35,7 +50,7 @@
         </div>
       </div>
     </nav>
-  </header>
+</header>
   <main>
     <div class="container-fluid">
         <div class="container mt-5 ms-auto mb-5">
@@ -65,7 +80,7 @@
                                         </div>
                                         <p class="about"><%= products.product_description %></p>
                                         <input type="hidden" name="sale_date" value="<%= products.sale_date.toISOString().slice(0, 19).replace('T', ' ').split(' ')[0]; %>">
-                                        <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+                                        <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Check Out</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
                                     </form>
                                 </div>
                             </div>

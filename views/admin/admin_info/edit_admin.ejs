@@ -10,75 +10,141 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-    <section class="vh-100" style="background-color: #eee;">
-    <% if (messages.error) { %>
-        <p style="color:red"><%- messages.error %></p>
-      <% } %> 
-        
-      <% if (messages.success) { %>
-          <p class="alert alert-success mt-4"><%- messages.success %></p>
-      <% } %> 
-        <div class="container h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-lg-12 col-xl-11">
-                    <div class="card text-black" style="border-radius: 25px;">
-                        <div class="card-body p-md-5">
-                            <div class="row justify-content-center">
-                                <div class="">
-                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Update Details</p>
-                                    <form class="row" action="/admin/update" method="post">
-                                        <div class="d-flex col align-items-center mb-4">
-                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                            <div class="form-outline flex-fill mb-0">
-                                                <input type="text" id="form3Example1c" name="fName" value="<%= employees.fName %>" class="form-control" />
-                                                <label class="form-label" for="fName">First Name</label>
-                                            </div>
-                                        </div>
-                                    
-                                        <div class="d-flex col align-items-center mb-4">
-                                          <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                          <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="form3Example1c" name="lName" value="<%= employees.lName %>" class="form-control" />
-                                            <label class="form-label" for="lName">Last Name</label>
-                                          </div>
-                                        </div>
-                                    
-                                        <div class="d-flex flex-row align-items-center mb-4">
-                                          <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                          <div class="form-outline flex-fill mb-0">
-                                            <input type="email" id="form3Example3c" name="email" value="<%= employees.email %>" class="form-control" />
-                                            <label class="form-label" for="email">Your Email</label>
-                                          </div>
-                                        </div>
-                                    
-                                        <div class="d-flex flex-row align-items-center mb-4">
-                                          <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                          <div class="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4c" name="password" value="<%= employees.password %>" class="form-control" />
-                                            <label class="form-label" for="password">Password</label>
-                                          </div>
-                                        </div>
-                                    
-                                        <div class="d-flex col align-items-center mb-4 invisible">
-                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                            <div class="form-outline flex-fill mb-0">
-                                                <input type="hidden" id="form3Example1c" name="id" value="<%= employees.id %>" class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                          <input type="submit" class="btn btn-primary btn-lg" value="Add Employee">
-                                        </div>
-                                    
-                                    </form>
-                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+          <a href="/admin" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+              <span class="fs-5 d-none d-sm-inline">DashBoard</span>
+          </a>
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+              <li>
+                  <a href="/admin" class="nav-link px-0 align-middle">
+                      <i class="fs-4 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">Dashboard</span> 
+                  </a>
+                  
+              </li>
+              <li>
+                  <a href="/admin/view_sales" class="nav-link px-0 align-middle">
+                      <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Sales</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                      <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Employees</span></a>
+                  <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                      <li class="w-100">
+                          <a href="/admin/view_employee" class="nav-link px-0"> <span class="d-none d-sm-inline">View</span> Employees</a>
+                      </li>
+                      <li>
+                          <a href="/admin/add_employee" class="nav-link px-0"> <span class="d-none d-sm-inline">Add</span> Employee</a>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                      <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span></a>
+                  <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                      <li class="w-100">
+                          <a href="/products/view_products" class="nav-link px-0"> <span class="d-none d-sm-inline">View</span> Products</a>
+                      </li>
+                      <li>
+                          <a href="/products/add_products" class="nav-link px-0"> <span class="d-none d-sm-inline">Add</span> Products</a>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#" class="nav-link px-0 align-middle">
+                      <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> 
+                  </a>
+              </li>
+          </ul>
+          <hr>
+          <div class="dropdown pb-4">
+              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="https://github.com/mdo.png" width="30" height="30" class="rounded-circle">
+                  <span class="d-none d-sm-inline mx-1"><%= my_session.first_name %></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                  <li><a class="dropdown-item" href="#">Change Password</a></li>
+                  <li><a class="dropdown-item" href="/login/logout">Sign out</a></li>
+              </ul>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="col py-3">
+        <section class="vh-100">
+        <% if (messages.error) { %>
+            <p style="color:red"><%- messages.error %></p>
+          <% } %> 
+        
+          <% if (messages.success) { %>
+              <p class="alert alert-success mt-4"><%- messages.success %></p>
+          <% } %> 
+            <div class="container h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                  <div class="col-lg-12 col-xl-11">
+                      <div class="card text-black" style="border-radius: 25px;">
+                          <div class="card-body p-md-5">
+                              <div class="row justify-content-center">
+                                  <div class="">
+                                      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Update Details</p>
+                                      <form class="row" action="/admin/update" method="post">
+                                          <div class="d-flex col align-items-center mb-4">
+                                              <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                              <div class="form-outline flex-fill mb-0">
+                                                  <input type="text" id="form3Example1c" name="fName" value="<%= employees.fName %>" class="form-control" />
+                                                  <label class="form-label" for="fName">First Name</label>
+                                              </div>
+                                        </div>
+                                      
+                                          <div class="d-flex col align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                              <input type="text" id="form3Example1c" name="lName" value="<%= employees.lName %>" class="form-control" />
+                                              <label class="form-label" for="lName">Last Name</label>
+                                            </div>
+                                        </div>
+                                      
+                                          <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                              <input type="email" id="form3Example3c" name="email" value="<%= employees.email %>" class="form-control" />
+                                              <label class="form-label" for="email">Your Email</label>
+                                            </div>
+                                        </div>
+                                      
+                                          <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                              <input type="password" id="form3Example4c" name="password" value="<%= employees.password %>" class="form-control" />
+                                              <label class="form-label" for="password">Password</label>
+                                            </div>
+                                        </div>
+                                      
+                                          <div class="d-flex col align-items-center mb-4 invisible">
+                                              <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                              <div class="form-outline flex-fill mb-0">
+                                                  <input type="hidden" id="form3Example1c" name="id" value="<%= employees.id %>" class="form-control" />
+                                              </div>
+                                          </div 
+                                          <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <input type="submit" class="btn btn-primary btn-lg" value="Add Employee">
+                                        </div>
+                                      
+                                    </form>
+                                  
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  
 </body>
 </html>

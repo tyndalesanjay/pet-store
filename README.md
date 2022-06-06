@@ -4,7 +4,7 @@
 # Creator -  
 - Sanjay Tyndale
 
-# Langauges and SoftWare used to create product -
+# Languages and SoftWare used to create product -
 - EJS
 - ExpressJS
 - NodeJS

@@ -1,5 +1,4 @@
-# Name -
-- Pet-Store 
+# Pet-Store 
 
 # Creator -  
 - Sanjay Tyndale
